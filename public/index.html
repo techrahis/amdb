@@ -11,8 +11,16 @@
 <body>
     <header>
         <form  id="form">  
-            <label class="amdb">AMDb</label>        
-            <input type="text" placeholder="Search" id="search" class="search">
+
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fa fa-bars" aria-hidden="true"></i> Movie</button>
+                <div class="dropdown-content">
+                  <a href="index.html" onClick="window.location.reload();">Movie</a>
+                  <a href="tv.html" onClick="window.location.reload();">TV Shows</a>
+                </div>
+              </div>
+
+            <input type="text" placeholder="Search for a movie..." id="search" class="search">
         </form>
     </header>
     

@@ -11,8 +11,16 @@
 <body>
     <header>
         <form  id="form">  
-            <label class="amdb">AMDb</label>        
-            <input type="text" placeholder="Search" id="search" class="search">
+
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fa fa-bars" aria-hidden="true"></i> TV Shows</button>
+                <div class="dropdown-content">
+                  <a href="index.html" onClick="window.location.reload();">Movie</a>
+                  <a href="tv.html" onClick="window.location.reload();">TV Shows</a>
+                </div>
+              </div>
+
+            <input type="text" placeholder="Search for a TV series..." id="search" class="search">
         </form>
     </header>
     
@@ -25,7 +33,8 @@
         <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
       </div>
     
-    <main id="main"></main>
+    <main id="tv"></main>
+
     <div class="pagination">
         <div class="page" id="prev">Previous Page</div>
         <div class="current" id="current">1</div>
@@ -33,7 +42,7 @@
     </div>
     <div id="tags"></div>
 
-    <script src="script.js"></script>
+    <script src="tv.js"></script>
 </body>
 
 

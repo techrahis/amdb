@@ -2,9 +2,9 @@
 
 const API_KEY = 'api_key=1cf50e6248dc270629e802686245c2c8';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const API_URL = BASE_URL + '/trending/movie/day?sort_by=popularity.desc&'+API_KEY;
+const API_URL = BASE_URL + '/trending/tv/day?sort_by=popularity.desc&'+API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-const searchURL = BASE_URL + '/search/movie?'+API_KEY;
+const searchURL = BASE_URL + '/search/tv?'+API_KEY;
 
 const genres = [
     {
@@ -85,7 +85,7 @@ const genres = [
     }
   ]
 
-const main = document.getElementById('main');
+const main = document.getElementById('tv');
 const form =  document.getElementById('form');
 const search = document.getElementById('search');
 const tagsEl = document.getElementById('tags');
@@ -194,7 +194,7 @@ function getMovies(url) {
 
 
         }else{
-            main.innerHTML= `<h1 class="no-results">No Results Found</h1>`
+            tv.innerHTML= `<h1 class="no-results">No Results Found</h1>`
         }
        
     })
@@ -203,30 +203,30 @@ function getMovies(url) {
 
 
 function showMovies(data) {
-    main.innerHTML = '';
+    tv.innerHTML = '';
 
     data.forEach(movie => {
-        const {title, release_date, original_language, poster_path, vote_average, overview, id} = movie;
+        const {name,season_number,original_language,title, poster_path, vote_average, overview, id} = movie;
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
         movieEl.innerHTML = `
              <img src="${poster_path? IMG_URL+poster_path: "http://via.placeholder.com/1080x1580" }" alt="${title}">
             <div class="movie-info">
-                <h3>${title}</h3>
+                <h3>${name}</h3>
                 <span class="${getColor(vote_average)}">${vote_average}</span>
             </div>
             <div class="overview">
-                <h1>${title}<h1>                           
-                <h4>Language: ${original_language}<br>Release Date: ${release_date}<h4>
-                <h2>Overview</h2>
-                <h4>${overview}<h4>
+                <h1>${name}<h1>                           
+                <h4>Language: ${original_language}<h4>
+                <h3>Overview</h3>
+                ${overview}
                 <br/> 
                 <button class="know-more" id="${id}">Trailer</button
             </div>
         
         `
 
-        main.appendChild(movieEl);
+        tv.appendChild(movieEl);
 
         document.getElementById(id).addEventListener('click', () => {
           console.log(id)
@@ -239,7 +239,7 @@ const overlayContent = document.getElementById('overlay-content');
 /* Open when someone clicks on the span element */
 function openNav(movie) {
   let id = movie.id;
-  fetch(BASE_URL + '/movie/'+id+'/videos?'+API_KEY).then(res => res.json()).then(videoData => {
+  fetch(BASE_URL + '/tv/'+id+'/season/season_number/videos?'+API_KEY).then(res => res.json()).then(videoData => {
     console.log(videoData);
     if(videoData){
       document.getElementById("myNav").style.width = "100%";
