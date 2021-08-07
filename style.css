@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 
 
 *{
@@ -16,6 +17,12 @@ body{
     background-color: var(--secondary-color);
     font-family: 'Poppins', sans-serif;
     margin: 0;
+}
+
+.head{
+    color: white;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
 }
 
 
@@ -163,7 +170,7 @@ main{
 }
 
 .movie-info span.red{
-    color:red;
+    color:rgb(207, 38, 38);
 }
 
 .overview{

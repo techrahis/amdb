@@ -3,6 +3,7 @@
 const API_KEY = 'api_key=1cf50e6248dc270629e802686245c2c8';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = BASE_URL + '/trending/tv/day?sort_by=popularity.desc&'+API_KEY;
+const G_URL = BASE_URL + '/discover/tv?sort_by=popularity.desc&'+API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/tv?'+API_KEY;
 
@@ -124,7 +125,7 @@ function setGenre() {
                 }
             }
             console.log(selectedGenre)
-            getMovies(API_URL + '&with_genres='+encodeURI(selectedGenre.join(',')))
+            getMovies(G_URL + '&with_genres='+encodeURI(selectedGenre.join(',')))
             highlightSelection()
         })
         tagsEl.append(t);
@@ -223,9 +224,8 @@ function showMovies(data) {
                 <br/> 
                 <button class="know-more" id="${id}">Trailer</button
             </div>
-        
         `
-
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
         tv.appendChild(movieEl);
 
         document.getElementById(id).addEventListener('click', () => {
@@ -252,7 +252,7 @@ function openNav(movie) {
           if(site == 'YouTube'){
               
             embed.push(`
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width=100% height=600px src="https://www.youtube.com/embed/${key}" title="${name}" class="embed hide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           
           `)
 
